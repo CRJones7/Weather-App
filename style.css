@@ -70,3 +70,18 @@ margin: auto;
       background-color: floralwhite;
       margin: auto;
   }
+
+  .city-name {
+      text-align: left;
+  }
+
+  .current {
+    text-align: left;
+    font-size: 15px;
+    display: inline;
+  }
+
+  .currentCityName {
+    font-size: 20px;
+    font-weight: bold;
+  }
