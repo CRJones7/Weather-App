@@ -5,11 +5,12 @@
     "search main main main main main"
     "search f1 f2 f3 f4";
 
-/* grid-template-columns: 90%, 60%, 40% ; */
-/* grid-template-rows: 100%, 30%, 70%, 23.3%; */
+/* grid-template-columns:  10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
 grid-template-rows: 20% 20% 20% 20% 20% ;
-grid-template-columns: 20% 20% 20% 20% 20%;
+grid-template-columns: 20% 20% 20% 20% 20% 20% 20%;
 grid-gap: 10px;
+ 
 /* background-color: #2196F3; */
 max-width: 100%;
 margin: auto;
@@ -33,43 +34,39 @@ margin: auto;
   .item2 {
     grid-column: 1 / 1;
     grid-row: 1 / 5;
-    background-color: rgb(222, 232, 247);
+    background-color: rgb(255, 255, 255);
   }
   .item3 {
     grid-column: 2 / 6;
     grid-row: 1 / 3;
-    background-color: rgb(222, 232, 247);
+    background-color: rgb(255, 255, 255);
   }
   .item4 {
 
-    grid-column: 2 / 2;
+    grid-column: 2 / 6;
     grid-row: 3 / 5;
-    background-color: rgb(222, 232, 247);
+    background-color: rgb(255, 255, 255);
   }
 
-  .item5 {
-    grid-column: 3 / 3;
-    grid-row: 3 / 5;
-    background-color: rgb(222, 232, 247);
-  }
 
-  .item6 {
-    grid-column: 4 / 4;
-    grid-row: 3 / 5;
-    background-color: rgb(222, 232, 247);
-  }
-
-  .item7 {
-    grid-column: 5 / 5;
-    grid-row: 3 / 5;
-    background-color: rgb(222, 232, 247);
-  }
-
-  .search-list-style {
+  /* .search-list-style {
       display: block;
       background-color: floralwhite;
       margin: auto;
-  }
+  } */
+
+  .past-searches {
+    display: block;
+    background-color: #4CAF50;
+    margin: 4px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    width: 100%;
+
+
+
+}
 
   .city-name {
       text-align: left;
@@ -84,4 +81,26 @@ margin: auto;
   .currentCityName {
     font-size: 20px;
     font-weight: bold;
+  }
+
+.forecast-card {
+    height: auto;
+    width: auto;
+    display: inline-block;
+    margin: 10px;
+}
+
+
+  .card-text {
+      font-size: 15px;
+      text-align: left;
+  }
+  
+  #search-section {
+      width: 100%;
+  }
+
+  #user-input {
+      width: 70%;
+      margin-right: 0px;
   }
