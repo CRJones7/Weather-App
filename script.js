@@ -17,16 +17,17 @@ showMoment.innerHTML = currentDay;
 
 
 $(document).ready(function () {
+
+
     //event listener for search button
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
-        $("currentDiv").empty();
+        
         // create input variables
         var userInput = $("#user-input").val();
         // console.log(userInput);
         var searchItem = $("<button>").text(userInput).addClass("past-searches");
-        //style buttons
-        // searchItem.addClass("search-list-style");
+
         // add search buttons to div
         $("#searched-cities").prepend(searchItem);
 
@@ -52,6 +53,7 @@ $(document).ready(function () {
             //promised data from API
             .then(function (response) {
                 var wResults = response
+
                 // console.log(results);
                 var lat = response.coord.lat;
                 console.log(lat);
@@ -68,10 +70,12 @@ $(document).ready(function () {
 
                 //creating div to be added to
                 var currentDiv = $("<div>").addClass("current");
-                $(".current-day").append(currentDiv);
+                $(".current-day").html(currentDiv);
 
                 //creating variables from results
                 var cityName = response.name;
+                var icon = response.weather.icon;
+                var iconImg = `http://openweathermap.org/img/w/${icon}.png`;
                 var temp = "Temperature: " + response.main.temp + "°F";
                 var humidity = "Humidity: " + response.main.humidity + "%";
                 var wSpeed = "Wind Speed: " + response.wind.speed + "mph";
@@ -82,12 +86,14 @@ $(document).ready(function () {
                 
                 //creating elements for data
                 var pN = $("<p>.temp").text(cityName).addClass("currentCityName");
+                var iA = $("<img>").attr("src", iconImg);
                 var pT = $("<p>.temp").text(temp).addClass("current-weather");
                 var pH = $("<p>.hum").text(humidity).addClass("current-weather");
                 var pS = $("<p>.wS").text(wSpeed).addClass("current-weather");
 
                 //appending collected weather
                 currentDiv.append(pN).val();
+                currentDiv.append(iA);
                 currentDiv.append(pT);
                 currentDiv.append(pH);
                 currentDiv.append(pS);
@@ -127,6 +133,9 @@ console.log(queryURL2);
                 var pUV = $("<p>").text("UV Index: " + uvIndex);
                 //appending to currentDiv
                 currentDiv.append(pUV);
+
+                //clearing the children of the class forecast 
+                $(".forecast").html("");
 
                 //5 day forcast
             for (var i = 1; i < 6; i++) {
