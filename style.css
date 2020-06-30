@@ -10,8 +10,6 @@ grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
 grid-template-rows: 20% 20% 20% 20% 20% ;
 grid-template-columns: 20% 20% 20% 20% 20% 20% 20%;
 grid-gap: 10px;
- 
-/* background-color: #2196F3; */
 max-width: 100%;
 margin: auto;
 
@@ -20,7 +18,6 @@ margin: auto;
 
 .grid-container > div {
     /* background-color: rgba(255, 255, 255, 0.8); */
-    text-align: center;
     padding: 20px 0;
     font-size: 30px;
     
@@ -30,11 +27,12 @@ margin: auto;
     grid-column: 1 / 6;
     grid-row: 1 / 1;
     background-color: #538fd9b3;
-
+    text-align: center;
+    
   }
   .item2 {
     grid-column: 1 / 1;
-    grid-row: 2 / 5;
+    grid-row: 2 / 6;
     background-color: rgb(255, 255, 255);
   }
   .item3 {
@@ -55,10 +53,14 @@ margin: auto;
       background-color: floralwhite;
       margin: auto;
   } */
+.titles {
+  text-align: center;
+  font-size: 23px;
+}
 
   .past-searches {
     display: block;
-    background-color: #4CAF50;
+    background-color: #23283544;
     margin: 4px;
     border-radius: 5px;
     text-align: center;
@@ -88,17 +90,22 @@ margin: auto;
     height: auto;
     width: auto;
     display: inline-block;
-    margin: 10px;
-    background-color: #538fd997;
+    align-self: center;
+    margin: 15px;
+    background-color: #538fd955;
+
 }
 
 .forecast-title {
     font-size: 25px;
     margin-top: 5px;
+    text-align: center;
+
 }
   .card-text {
       font-size: 15px;
-      text-align: left;
+      text-align: center;
+
   }
   
   #search-section {
@@ -108,4 +115,11 @@ margin: auto;
   #user-input {
       width: 70%;
       margin-right: 0px;
+  }
+
+  .current-img {
+    align-self: left;
+  }
+  .forecast-image {
+    align-self: center;
   }

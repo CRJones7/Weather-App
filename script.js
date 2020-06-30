@@ -39,11 +39,14 @@ $(document).ready(function () {
         // console.log(cityArr);
         //calls function to render user searches list
         renderPastSearch();
+        
 
+
+        
         // Constructing a URL to search Current Weather API for lat & long
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput
             + "&appid=b1a89a367b9a4ae4aad5428008542c41&units=imperial";
-
+            
         //perform AJAX GET request
         $.ajax({
             url: queryURL,
@@ -74,8 +77,8 @@ $(document).ready(function () {
 
                 //creating variables from results
                 var cityName = response.name;
-                var icon = response.weather.icon;
-                var iconImg = `http://openweathermap.org/img/w/${icon}.png`;
+                var icon = response.weather[0].icon;
+                var iconImg = `http://openweathermap.org/img/wn/${icon}@2x.png`;
                 var temp = "Temperature: " + response.main.temp + "°F";
                 var humidity = "Humidity: " + response.main.humidity + "%";
                 var wSpeed = "Wind Speed: " + response.wind.speed + "mph";
@@ -86,7 +89,7 @@ $(document).ready(function () {
                 
                 //creating elements for data
                 var pN = $("<p>.temp").text(cityName).addClass("currentCityName");
-                var iA = $("<img>").attr("src", iconImg);
+                var iA = $("<img>").attr("src", iconImg).addClass("current-img");
                 var pT = $("<p>.temp").text(temp).addClass("current-weather");
                 var pH = $("<p>.hum").text(humidity).addClass("current-weather");
                 var pS = $("<p>.wS").text(wSpeed).addClass("current-weather");
@@ -139,8 +142,8 @@ console.log(queryURL2);
 
                 //5 day forcast
             for (var i = 1; i < 6; i++) {
-                var icon = response.daily[i].weather.icon;
-                var iconPicture = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+                var icon = response.daily[i].weather[0].icon;
+                var iconPicture = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
                 var forecastCard = $("<div>").addClass("card forecast-card");
                 $(".forecast").append(forecastCard);
@@ -167,7 +170,13 @@ console.log(queryURL2);
 
     };
 
+    $('#searched-cities').on('click', '.past-searches', function() {
+        // do something
+        console.log("Searched Cities");
+        var searchAgain = $(this).text();
+        console.log(searchAgain);
 
+    });
 
     //function to get the local storage and show in the  searched citites ul
     function renderPastSearch() {
@@ -176,6 +185,3 @@ console.log(queryURL2);
         //Keep these stored search on the screen after refresh
     };
 });
-
-
-
