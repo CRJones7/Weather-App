@@ -1,19 +1,10 @@
 var pastSearch = $("#searched-cities")
-var cityArr = [];
-
-var currentDay = moment().format("(MM/DD/YYYY)");
-console.log(currentDay);
-var showMoment = $(".current-day");
-showMoment.innerHTML = currentDay;
+var cityArr = ["Austin", "Denver", "New York"];
 
 
-//to display an error if user input is invalid
-// function displayMessage(type, message) {
-//    $("#msgE").text(message);
+var storedSearch = JSON.parse(localStorage.getItem("cityArr"));
+        console.log(storedSearch);
 
-
-
-// }
 
 
 $(document).ready(function () {
@@ -22,10 +13,15 @@ $(document).ready(function () {
     //event listener for search button
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
-        
+        userSearch();
+        $('#user-input').val('');
+    });
+
+    
+    function userSearch() {
         // create input variables
         var userInput = $("#user-input").val();
-        // console.log(userInput);
+       
         var searchItem = $("<button>").text(userInput).addClass("past-searches");
 
         // add search buttons to div
@@ -36,13 +32,15 @@ $(document).ready(function () {
         localStorage.setItem("cityArr", JSON.stringify(cityArr));
         //push value into a function
         cityArr.push(userInput);
-        // console.log(cityArr);
+        firstCall(userInput);
         //calls function to render user searches list
-        renderPastSearch();
+    };
         
 
 
-        
+        function firstCall(userInput) {  
+            
+
         // Constructing a URL to search Current Weather API for lat & long
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput
             + "&appid=b1a89a367b9a4ae4aad5428008542c41&units=imperial";
@@ -76,10 +74,11 @@ $(document).ready(function () {
                 $(".current-day").html(currentDiv);
 
                 //creating variables from results
+                var date = moment().format("(MM/DD/YYYY)");
                 var cityName = response.name;
                 var icon = response.weather[0].icon;
                 var iconImg = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-                var temp = "Temperature: " + response.main.temp + "°F";
+                var temp = "Temperature: " + Math.floor(response.main.temp) + "°F";
                 var humidity = "Humidity: " + response.main.humidity + "%";
                 var wSpeed = "Wind Speed: " + response.wind.speed + "mph";
                 console.log(wSpeed);
@@ -89,13 +88,15 @@ $(document).ready(function () {
                 
                 //creating elements for data
                 var pN = $("<p>.temp").text(cityName).addClass("currentCityName");
+                var pD = $("<p>").text(date).addClass("the-date");
                 var iA = $("<img>").attr("src", iconImg).addClass("current-img");
                 var pT = $("<p>.temp").text(temp).addClass("current-weather");
                 var pH = $("<p>.hum").text(humidity).addClass("current-weather");
                 var pS = $("<p>.wS").text(wSpeed).addClass("current-weather");
 
                 //appending collected weather
-                currentDiv.append(pN).val();
+                currentDiv.append(pN);
+                currentDiv.append(pD);
                 currentDiv.append(iA);
                 currentDiv.append(pT);
                 currentDiv.append(pH);
@@ -104,7 +105,7 @@ $(document).ready(function () {
 
             });
             
-    });
+    };
 
     
 
@@ -127,7 +128,8 @@ console.log(queryURL2);
                 
                 //var for getting uv index
                 var uvIndex = results.current.uvi;
-                console.log(uvIndex);
+                
+                
                 //creating div to add to
                 var currentDiv = $("<div>").addClass("current");
                 $(".current-day").append(currentDiv);
@@ -157,7 +159,7 @@ console.log(queryURL2);
                 var cardBody = $("<div>").addClass("card-body");
                 $(forecastCard).append(cardBody);
 
-                $(cardBody).append($("<p>").addClass("card-text").text("Temp: " + results.daily[i].temp.day + "°F"));
+                $(cardBody).append($("<p>").addClass("card-text").text("Temp: " + Math.floor(results.daily[i].temp.day) + "°F"));
                 $(cardBody).append($("<p>").addClass("card-text").text("Humidity: " + results.daily[i].humidity + "%"));
 
 
@@ -171,17 +173,14 @@ console.log(queryURL2);
     };
 
     $('#searched-cities').on('click', '.past-searches', function() {
-        // do something
-        console.log("Searched Cities");
+        event.preventDefault();
         var searchAgain = $(this).text();
-        console.log(searchAgain);
+        firstCall(searchAgain);
 
     });
 
-    //function to get the local storage and show in the  searched citites ul
-    function renderPastSearch() {
-        var storedSearch = JSON.parse(localStorage.getItem("cityArr"));
-        // console.log(storedSearch);
-        //Keep these stored search on the screen after refresh
-    };
+        
+        
 });
+
+
