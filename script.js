@@ -1,14 +1,24 @@
 var pastSearch = $("#searched-cities")
-var cityArr = ["Austin", "Denver", "New York"];
-
+var cityArr = ["Austin", "Denver", "New York", ];
 
 var storedSearch = JSON.parse(localStorage.getItem("cityArr"));
-        console.log(storedSearch);
-
 
 
 $(document).ready(function () {
 
+    initBtns();
+    function initBtns() {
+    
+            console.log(storedSearch);
+            var defaultCity = "Austin";
+            if (storedSearch){
+            for (var i = 0; i < 3; i++){
+                    $("#searched-cities").append($("<button>").text(storedSearch[i]).addClass("past-searches"));
+                    } 
+                defaultCity = storedSearch[0];
+            }
+            firstCall(defaultCity);
+    };
 
     //event listener for search button
     $("#searchBtn").on("click", function (event) {
@@ -53,7 +63,7 @@ $(document).ready(function () {
         
             //promised data from API
             .then(function (response) {
-                var wResults = response
+                
 
                 // console.log(results);
                 var lat = response.coord.lat;
