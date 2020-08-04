@@ -1,14 +1,16 @@
+# Weather Checker
+
+## Description
+
+Weather application needed to track the weather as I travel the globe.
 
 ## User Story
 
-I want to check the current and future weather 
-When I travel I want to check the current and 
-future weather conditions at my destination
+AS A USER 
+I WANT to check the current weather 
+AND future conditions in any city
+SO THAT when I travel I can be prepared for the current and future conditions
 
-##Features
-When I type in a city name 
-Then I am presented with that cities current weather and fiture weather conditions
-Clicking past searches brings up the 
 
 
 ![Weather Giphy](weathergif.gif)
