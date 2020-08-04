@@ -1,3 +1,6 @@
+*{
+  font-family: 'Titillium Web', sans-serif;
+}
 .grid-container {
     display: grid;
  grid-template-areas:  
@@ -28,7 +31,9 @@ margin: auto;
     grid-row: 1 / 1;
     background-color: #538fd9b3;
     text-align: center;
-    
+    max-height: 15vh;
+    font-weight: 900;
+    font-family: 'Titillium Web', sans-serif;
   }
   .item2 {
     grid-column: 1 / 1;
